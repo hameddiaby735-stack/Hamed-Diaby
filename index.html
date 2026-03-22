@@ -3,189 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ma Boutique Mobile Pro</title>
+<title>Ma Boutique</title>
+
 <style>
-body { font-family: 'Arial', sans-serif; margin:0; background:#f0f4f8; }
-nav { background:#1e90ff; color:white; padding:15px; text-align:center; font-weight:bold; font-size:24px; box-shadow:0 2px 5px rgba(0,0,0,0.2);}
-#panier-stats { background:#ff9500; color:white; padding:10px; text-align:center; position:sticky; top:0; font-weight:bold;}
-.boutique { padding:15px; display:flex; flex-wrap:wrap; gap:20px; justify-content:center;}
-.produit { background:white; border-radius:15px; overflow:hidden; box-shadow:0 6px 10px rgba(0,0,0,0.15); width:260px; transition: transform 0.3s; }
-.produit:hover { transform: translateY(-5px); }
-.produit img { width:100%; height:180px; object-fit:cover; }
-.infos { padding:15px; }
-.infos h3 { margin:0; font-size:20px; color:#333; }
-.infos p { font-size:14px; color:#666; margin:5px 0; }
-.prix { color:#27ae60; font-size:18px; font-weight:bold; margin:10px 0; }
-button { background:#007aff; color:white; border:none; width:100%; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer; transition:0.3s; }
-button:hover { background:#0051a8; }
-.filtre { padding:10px; text-align:center; margin-bottom:10px;}
-.filtre button { margin:0 5px; background:#1e90ff; padding:8px 12px; border-radius:8px; color:white; border:none; cursor:pointer; transition:0.3s; }
-.filtre button:hover { background:#0051a8; }
-#recherche { padding:8px 10px; border-radius:8px; width:80%; max-width:300px; margin-bottom:15px; border:1px solid #ccc; }
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f4f4;
+}
+
+/* HEADER */
+header {
+    background: #007aff;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.panier {
+    font-size: 20px;
+}
+
+/* GRILLE PRODUITS */
+.boutique {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 15px;
+}
+
+/* PRODUIT */
+.produit {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.produit img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.infos {
+    padding: 10px;
+}
+
+.prix {
+    color: green;
+    font-weight: bold;
+}
+
+/* BOUTON */
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #25D366;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 10px;
+}
 </style>
 </head>
+
 <body>
 
-<nav>📱 MA BOUTIQUE TECH PRO</nav>
-<div id="panier-stats">Articles dans le panier : <span id="count">0</span></div>
+<header>
+    <h1>📱 Ma Boutique</h1>
+    <div class="panier">🛒</div>
+</header>
 
-<div class="filtre">
-    <input type="text" id="recherche" placeholder="Rechercher un produit..." onkeyup="filtrerProduits()">
-    <br>
-    <button onclick="filtrerCategorie('Tous')">Tous</button>
-    <button onclick="filtrerCategorie('Téléphone')">Téléphone</button>
-    <button onclick="filtrerCategorie('Accessoires')">Accessoires</button>
-    <button onclick="filtrerCategorie('Audio')">Audio</button>
-</div>
+<div class="boutique">
 
-<div class="boutique" id="produits">
-
-    <!-- Produit 1 -->
-    <div class="produit" data-categorie="Téléphone">
-        <img src="https://picsum.photos/260/180?random=1" alt="iPhone XR Pro">
+    <!-- PRODUIT 1 -->
+    <div class="produit">
+        <img src="https://picsum.photos/200?1">
         <div class="infos">
-            <h3>iPhone XR Pro</h3>
-            <p>État comme neuf, batterie 100%.</p>
-            <div class="prix">450 €</div>
-            <button onclick="ajouterAuPanier()">Ajouter au panier</button>
+            <h3>iPhone XR</h3>
+            <p>Très bon état</p>
+            <div class="prix">150 000 FCFA</div>
+
+            <a href="https://wa.me/225XXXXXXXXXX?text=Salut Hamed, je veux commander l'iPhone XR" target="_blank">
+                <button>Commander sur WhatsApp</button>
+            </a>
         </div>
     </div>
 
-    <!-- Produit 2 -->
-    <div class="produit" data-categorie="Accessoires">
-        <img src="https://picsum.photos/260/180?random=2" alt="Coque MagSafe">
+    <!-- PRODUIT 2 -->
+    <div class="produit">
+        <img src="https://picsum.photos/200?2">
         <div class="infos">
-            <h3>Coque MagSafe</h3>
-            <p>Ultra résistante aux chocs.</p>
-            <div class="prix">29 €</div>
-            <button onclick="ajouterAuPanier()">Ajouter au panier</button>
-        </div>
-    </div>
+            <h3>Casque Bluetooth</h3>
+            <p>Qualité sonore</p>
+            <div class="prix">25 000 FCFA</div>
 
-    <!-- Produit 3 -->
-    <div class="produit" data-categorie="Accessoires">
-        <img src="https://picsum.photos/260/180?random=3" alt="Chargeur rapide">
-        <div class="infos">
-            <h3>Chargeur rapide 20W</h3>
-            <p>Compatible iPhone et Android.</p>
-            <div class="prix">19 €</div>
-            <button onclick="ajouterAuPanier()">Ajouter au panier</button>
-        </div>
-    </div>
-
-    <!-- Produit 4 -->
-    <div class="produit" data-categorie="Audio">
-        <img src="https://picsum.photos/260/180?random=4" alt="Écouteurs Bluetooth">
-        <div class="infos">
-            <h3>Écouteurs Bluetooth</h3>
-            <p>Son clair et longue autonomie.</p>
-            <div class="prix">49 €</div>
-            <button onclick="ajouterAuPanier()">Ajouter au panier</button>
-        </div>
-    </div>
-
-    <!-- Produit 5 -->
-    <div class="produit" data-categorie="Accessoires">
-        <img src="https://picsum.photos/260/180?random=5" alt="Support voiture">
-        <div class="infos">
-            <h3>Support téléphone voiture</h3>
-            <p>Fixation solide, rotation 360°.</p>
-            <div class="prix">15 €</div>
-            <button onclick="ajouterAuPanier()">Ajouter au panier</button>
-        </div>
-    </div>
-
-    <!-- Produit 6 -->
-    <div class="produit" data-categorie="Accessoires">
-        <img src="https://picsum.photos/260/180?random=6" alt="Chargeur sans fil">
-        <div class="infos">
-            <h3>Chargeur sans fil</h3>
-            <p>Rapide et compatible avec tous les téléphones.</p>
-            <div class="prix">25 €</div>
-            <button onclick="ajouterAuPanier()">Ajouter au panier</button>
-        </div>
-    </div>
-
-    <!-- Produit 7 -->
-    <div class="produit" data-categorie="Téléphone">
-        <img src="https://picsum.photos/260/180?random=7" alt="Smartwatch">
-        <div class="infos">
-            <h3>Smartwatch</h3>
-            <p>Suivi santé et notifications.</p>
-            <div class="prix">120 €</div>
-            <button onclick="ajouterAuPanier()">Ajouter au panier</button>
-        </div>
-    </div>
-
-    <!-- Produit 8 -->
-    <div class="produit" data-categorie="Accessoires">
-        <img src="https://picsum.photos/260/180?random=8" alt="Protection écran">
-        <div class="infos">
-            <h3>Protection écran en verre</h3>
-            <p>Anti-rayures et ultra clair.</p>
-            <div class="prix">10 €</div>
-            <button onclick="ajouterAuPanier()">Ajouter au panier</button>
-        </div>
-    </div>
-
-    <!-- Produit 9 -->
-    <div class="produit" data-categorie="Audio">
-        <img src="https://picsum.photos/260/180?random=9" alt="Powerbank">
-        <div class="infos">
-            <h3>Powerbank 10000mAh</h3>
-            <p>Portable, charge rapide.</p>
-            <div class="prix">35 €</div>
-            <button onclick="ajouterAuPanier()">Ajouter au panier</button>
-        </div>
-    </div>
-
-    <!-- Produit 10 -->
-    <div class="produit" data-categorie="Audio">
-        <img src="https://picsum.photos/260/180?random=10" alt="Casque Bluetooth">
-        <div class="infos">
-            <h3>Casque audio Bluetooth</h3>
-            <p>Qualité sonore exceptionnelle.</p>
-            <div class="prix">60 €</div>
-            <button onclick="ajouterAuPanier()">Ajouter au panier</button>
+            <a href="https://wa.me/2250719949973?text=Salut Hamed, je veux commander le casque Bluetooth" target="_blank">
+                <button>Commander sur WhatsApp</button>
+            </a>
         </div>
     </div>
 
 </div>
-
-<script>
-let total = 0;
-function ajouterAuPanier() {
-    total++;
-    document.getElementById('count').innerText = total;
-    alert("Produit ajouté ! Total : " + total);
-}
-
-// Filtre par catégorie
-function filtrerCategorie(categorie) {
-    let produits = document.querySelectorAll('.produit');
-    produits.forEach(p => {
-        if(categorie === 'Tous' || p.dataset.categorie === categorie) {
-            p.style.display = 'block';
-        } else {
-            p.style.display = 'none';
-        }
-    });
-}
-
-// Recherche
-function filtrerProduits() {
-    let recherche = document.getElementById('recherche').value.toLowerCase();
-    let produits = document.querySelectorAll('.produit');
-    produits.forEach(p => {
-        let titre = p.querySelector('h3').innerText.toLowerCase();
-        if(titre.includes(recherche)) {
-            p.style.display = 'block';
-        } else {
-            p.style.display = 'none';
-        }
-    });
-}
-</script>
 
 </body>
 </html>
